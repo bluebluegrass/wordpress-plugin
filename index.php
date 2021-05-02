@@ -119,7 +119,7 @@ function revue_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'revue_enqueue_scripts' );
 
 function revue_subscribe_callback() {
-	revue_subscribe( $_POST['email'], $_POST['first_name'], $_POST['last_name'] );
+	revue_subscribe( $_POST['email'] ); //, $_POST['first_name'], $_POST['last_name']
 
 	header( 'Content-Type: application/json' );
 
@@ -149,8 +149,8 @@ function revue_subscribe_form() {
 
 	$res .= '<div class="revue-subscribe">';
 	$res .= _revue_print_field( __( 'E-mail', 'revue' ), 'revue_email', 'email' );
-	$res .= _revue_print_field( __( 'Firstname', 'revue' ), 'revue_first_name', 'text' );
-	$res .= _revue_print_field( __( 'Lastname', 'revue' ), 'revue_last_name', 'text' );
+// 	$res .= _revue_print_field( __( 'Firstname', 'revue' ), 'revue_first_name', 'text' );
+// 	$res .= _revue_print_field( __( 'Lastname', 'revue' ), 'revue_last_name', 'text' );
 	$res .= '<button type="submit">' . __( 'Subscribe', 'revue' ) . '</button>';
 	$res .= '</div>';
 
@@ -180,20 +180,20 @@ function _revue_key_provided() {
 	return ! empty( $options['api_key'] );
 }
 
-function revue_subscribe( $email, $first_name = null, $last_name = null ) {
+function revue_subscribe( $email ) { //, $first_name = null, $last_name = null
 	$options = get_option( 'revue_general' );
 
 	$body = array(
 		'email' => $email,
 	);
 
-	if ( ! empty( $first_name ) ) {
-		$body['first_name'] = $first_name;
-	}
+// 	if ( ! empty( $first_name ) ) {
+// 		$body['first_name'] = $first_name;
+// 	}
 
-	if ( ! empty( $last_name ) ) {
-		$body['last_name'] = $last_name;
-	}
+// 	if ( ! empty( $last_name ) ) {
+// 		$body['last_name'] = $last_name;
+// 	}
 
 	wp_remote_post( 'https://www.getrevue.co/api/v2/subscribers', array(
 		'headers' => array(
@@ -207,7 +207,7 @@ function revue_subscribe( $email, $first_name = null, $last_name = null ) {
 function revue_admin_styles() {
 	echo '<style>
 		.wrap-revue #submit {
-			background: transparent;
+			background: #EB8258;
 			border: 0;
 			text-shadow: none;
 			box-shadow: none;

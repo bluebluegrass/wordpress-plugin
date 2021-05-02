@@ -148,7 +148,7 @@ function revue_subscribe_form() {
 	$res = '';
 
 	$res .= '<div class="revue-subscribe">';
-	$res .= _revue_print_field( __( 'E-mail', 'revue' ), 'revue_email', 'email' );
+	$res .= _revue_print_field( __( '订阅Your Weekly Dose of Podcasts', 'revue' ), 'revue_email', 'email' );
 // 	$res .= _revue_print_field( __( 'Firstname', 'revue' ), 'revue_first_name', 'text' );
 // 	$res .= _revue_print_field( __( 'Lastname', 'revue' ), 'revue_last_name', 'text' );
 	$res .= '<button type="submit">' . __( 'Subscribe', 'revue' ) . '</button>';
